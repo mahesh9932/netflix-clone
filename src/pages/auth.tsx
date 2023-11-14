@@ -1,5 +1,8 @@
 import Input from "@/components/Input";
 import { useState } from "react";
+import axios from "axios";
+import Router from "next/router";
+import { signIn } from "next-auth/react";
 
 const Auth = () => {
   const [email, setEmail] = useState<string>("");
@@ -9,6 +12,33 @@ const Auth = () => {
 
   const changeStatus = () => {
     setStatus((prevVal) => (prevVal == "login" ? "register" : "login"));
+  };
+
+  const login = async () => {
+    try {
+      const res = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+      });
+      console.log("response", res);
+      Router.push("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const register = async () => {
+    try {
+      await axios.post("/api/register", {
+        name: username,
+        email,
+        password,
+      });
+      login();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -28,7 +58,7 @@ const Auth = () => {
                   id="username"
                   label="Username"
                   onChange={(event: any) => setUsername(event.target.value)}
-                  value={email}
+                  value={username}
                 />
               )}
 
@@ -48,6 +78,7 @@ const Auth = () => {
             </div>
             <div>
               <button
+                onClick={status == "login" ? login : register}
                 className="text-white
              py-2 px-10 bg-red-600 hover:bg-red-500
              rounded-md mt-8 w-full"
