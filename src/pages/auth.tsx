@@ -4,6 +4,9 @@ import axios from "axios";
 import Router from "next/router";
 import { signIn } from "next-auth/react";
 
+import { FaGithub } from "react-icons/fa";
+import { FaGoogle } from "react-icons/fa";
+
 const Auth = () => {
   const [email, setEmail] = useState<string>("");
   const [username, setUsername] = useState("");
@@ -22,7 +25,7 @@ const Auth = () => {
         redirect: false,
       });
       console.log("response", res);
-      Router.push("/");
+      Router.push("/profiles");
     } catch (error) {
       console.log(error);
     }
@@ -86,6 +89,31 @@ const Auth = () => {
                 {status == "login" ? "Login" : "Register"}
               </button>
             </div>
+
+            <div className="flex justify-center items-center gap-6 mt-10 ">
+              <div
+                onClick={async () => {
+                  await signIn("google", {
+                    callbackUrl: "/profiles",
+                  });
+                }}
+                className="h-10 w-10 bg-white rounded-full flex justify-center items-center hover:bg-opacity-80 transition hover:cursor-pointer"
+              >
+                <FaGoogle size={30} />
+              </div>
+
+              <div
+                onClick={async () => {
+                  await signIn("github", {
+                    callbackUrl: "/profiles",
+                  });
+                }}
+                className="h-10 w-10 bg-white rounded-full flex justify-center items-center hover:bg-opacity-80 transition hover:cursor-pointer"
+              >
+                <FaGithub size={30} />
+              </div>
+            </div>
+
             <p className="text-zinc-500 mt-6">
               {status == "login"
                 ? "Are you a new user?"
