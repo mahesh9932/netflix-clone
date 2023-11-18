@@ -29,17 +29,17 @@ const NavBar = () => {
   }, []);
 
   return (
-    <nav className="w-full fixed z-50">
+    <nav className="fixed w-full z-50 ">
       <div
-        className={`flex flex-row gap-10 items-center px-4 lg:px-7 py-6 ${
+        className={`flex flex-row gap-5 md:gap-10 items-center px-2 md:px-4 lg:px-7 py-2 md:py-6 ${
           showBackground ? "bg-gray-900 bg-opacity-90" : ""
         }`}
       >
-        <img src="/images/logo.png" className="h-10" />
+        <img src="/images/logo.png" className="h-4 md:h-10" />
         <NavBarMenu />
         <div
           onClick={() => setShowBrowseMenu((prevVal) => !prevVal)}
-          className="lg:hidden text-white hover:text-gray-400 flex items-center gap-2 relative cursor-pointer"
+          className="lg:hidden text-sm md:text-lg text-white hover:text-gray-400 flex items-center gap-2 relative cursor-pointer"
         >
           <p>Browse</p>
           <div
@@ -61,10 +61,10 @@ const NavBar = () => {
               setShowAccountMenu((prevVal) => !prevVal);
             }}
           >
-            <div>
+            <div className="w-6 h-6 md:h-9 md:w-9">
               <img
                 src="/images/default-blue.png"
-                className="w-9 h-9 rounded-md"
+                className="rounded-md"
                 alt="profile-icon"
               />
             </div>

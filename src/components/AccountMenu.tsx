@@ -1,3 +1,4 @@
+import { signOut } from "next-auth/react";
 interface AccountMenuProps {
   visible?: boolean;
 }
@@ -21,7 +22,10 @@ const AccountMenu = ({ visible }: AccountMenuProps) => {
             Username
           </p>
         </div>
-        <div className="text-center p-3 flex text-white items-center justify-center text-sm hover:underline">
+        <div
+          onClick={() => signOut()}
+          className="text-center p-3 flex text-white items-center justify-center text-sm hover:underline"
+        >
           Sign Out
         </div>
       </div>

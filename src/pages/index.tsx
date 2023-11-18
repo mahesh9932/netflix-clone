@@ -4,6 +4,7 @@ import { signOut } from "next-auth/react";
 import { authOptions } from "./api/auth/[...nextauth]";
 import useCurrentUser from "@/hooks/useCurrentUser";
 import NavBar from "@/components/NavBar";
+import BillBoard from "@/components/BillBoard";
 
 export async function getServerSideProps(context: NextPageContext) {
   const session = await getServerSession(context.req, context.res, authOptions);
@@ -25,8 +26,12 @@ export default function Home() {
   const { data: user } = useCurrentUser();
 
   return (
-    <div>
-      <NavBar />
-    </div>
+    <>
+      <div className="w-full ">
+        <NavBar />
+        <BillBoard />
+      </div>
+      <div className="bg-red h-5"></div>
+    </>
   );
 }

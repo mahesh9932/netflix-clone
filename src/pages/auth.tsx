@@ -93,9 +93,11 @@ const Auth = () => {
             <div className="flex justify-center items-center gap-6 mt-10 ">
               <div
                 onClick={async () => {
-                  await signIn("google", {
+                  const res = await signIn("google", {
                     callbackUrl: "/profiles",
+                    redirect: false,
                   });
+                  console.log("res", res);
                 }}
                 className="h-10 w-10 bg-white rounded-full flex justify-center items-center hover:bg-opacity-80 transition hover:cursor-pointer"
               >
