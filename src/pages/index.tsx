@@ -5,6 +5,7 @@ import { authOptions } from "./api/auth/[...nextauth]";
 import useCurrentUser from "@/hooks/useCurrentUser";
 import NavBar from "@/components/NavBar";
 import BillBoard from "@/components/BillBoard";
+import MoviesList from "@/components/MoviesList";
 
 export async function getServerSideProps(context: NextPageContext) {
   const session = await getServerSession(context.req, context.res, authOptions);
@@ -30,8 +31,8 @@ export default function Home() {
       <div className="w-full ">
         <NavBar />
         <BillBoard />
+        <MoviesList title="Trending Now" />
       </div>
-      <div className="bg-red h-5"></div>
     </>
   );
 }
