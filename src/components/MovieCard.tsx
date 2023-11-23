@@ -3,9 +3,9 @@
 // };
 
 import { IoPlay } from "react-icons/io5";
+import FavouriteButton from "./FavouriteButton";
 
 const MovieCard = ({ movie }: any) => {
-  console.log("movie", movie);
   return (
     <div className="group relative">
       <div className="h-[14vw]">
@@ -25,8 +25,11 @@ const MovieCard = ({ movie }: any) => {
             <div className="w-7 h-7 rounded-full bg-white hover:bg-neutral-300 cursor-pointer transition duration-100 flex justify-center items-center">
               <IoPlay size={20} />
             </div>
+            <FavouriteButton movieId={movie.id} />
           </div>
-          <p className="text-green-400 font-semibold mt-4">{movie.title}</p>
+          <p className="text-green-400 font-semibold mt-4 text-md">
+            {movie.title}
+          </p>
           <div className="flex flex-row mt-4 gap-2 items-center">
             <p className="text-white text-[10px] lg:text-sm">
               {movie.duration}

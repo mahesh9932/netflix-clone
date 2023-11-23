@@ -3,11 +3,10 @@ import { isEmpty, isError } from "lodash";
 import MovieCard from "./MovieCard";
 type MoviesListProps = {
   title: string;
+  movies: any;
 };
 
-const MoviesList: React.FC<MoviesListProps> = ({ title }) => {
-  const { data: movies = [] } = useMoviesList();
-
+const MoviesList: React.FC<MoviesListProps> = ({ title, movies }) => {
   if (isEmpty(movies)) {
     return <></>;
   }
