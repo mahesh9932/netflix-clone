@@ -4,8 +4,11 @@
 
 import { IoPlay } from "react-icons/io5";
 import FavouriteButton from "./FavouriteButton";
+import { useRouter } from "next/router";
 
 const MovieCard = ({ movie }: any) => {
+  const router = useRouter();
+
   return (
     <div className="group relative">
       <div className="h-[14vw]">
@@ -22,7 +25,10 @@ const MovieCard = ({ movie }: any) => {
         />
         <div className="py-2 px-4 md:px-6 bg-zinc-800 rounded-b-md space-y-2">
           <div className="flex gap-3 flex-row my-4 items-center">
-            <div className="w-7 h-7 rounded-full bg-white hover:bg-neutral-300 cursor-pointer transition duration-100 flex justify-center items-center">
+            <div
+              onClick={() => router.push(`/watch/${movie.id}`)}
+              className="w-7 h-7 rounded-full bg-white hover:bg-neutral-300 cursor-pointer transition duration-100 flex justify-center items-center"
+            >
               <IoPlay size={20} />
             </div>
             <FavouriteButton movieId={movie.id} />
