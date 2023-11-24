@@ -3,11 +3,21 @@
 // };
 
 import { IoPlay } from "react-icons/io5";
+import { IoIosInformationCircleOutline } from "react-icons/io";
 import FavouriteButton from "./FavouriteButton";
 import { useRouter } from "next/router";
+import { useAppDispatch } from "@/app/hooks";
+import { openModal } from "@/features/infoModal/infoModalSlice";
 
 const MovieCard = ({ movie }: any) => {
   const router = useRouter();
+
+  const dispatch = useAppDispatch();
+
+  const openModalHandler = () => {
+    console.log("open handler...");
+    dispatch(openModal(movie?.id));
+  };
 
   return (
     <div className="group relative">
@@ -32,6 +42,12 @@ const MovieCard = ({ movie }: any) => {
               <IoPlay size={20} />
             </div>
             <FavouriteButton movieId={movie.id} />
+            <div
+              onClick={openModalHandler}
+              className="w-7 h-7 rounded-full bg-white hover:bg-neutral-300 cursor-pointer transition duration-100 flex justify-center items-center"
+            >
+              <IoIosInformationCircleOutline size={20} />
+            </div>
           </div>
           <p className="text-green-400 font-semibold mt-4 text-md">
             {movie.title}

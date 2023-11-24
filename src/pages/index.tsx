@@ -8,6 +8,8 @@ import BillBoard from "@/components/BillBoard";
 import MoviesList from "@/components/MoviesList";
 import useMoviesList from "@/hooks/useMoviesList";
 import useFavourites from "@/hooks/useFavourites";
+import InfoModal from "@/components/InfoModal";
+import { useAppSelector } from "@/app/hooks";
 
 export async function getServerSideProps(context: NextPageContext) {
   const session = await getServerSession(context.req, context.res, authOptions);
@@ -29,13 +31,12 @@ export default function Home() {
   const { data: user } = useCurrentUser();
   const { data: movies } = useMoviesList();
   const { data: favourites } = useFavourites();
-
-  console.log("user running again", user);
-  console.log("favourites running again...", favourites);
+  const isOpen = useAppSelector((state) => state.infoModal.isOpen);
 
   return (
     <>
       <div className="w-full ">
+        <InfoModal visible={isOpen} />
         <NavBar />
         <BillBoard />
         <MoviesList title="Trending Now" movies={movies} />

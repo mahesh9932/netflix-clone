@@ -1,11 +1,17 @@
 import useBillBoard from "@/hooks/useBillBoard";
 import { IoIosInformationCircleOutline } from "react-icons/io";
 import PlayButton from "./PlayButton";
+import { useAppDispatch, useAppSelector } from "@/app/hooks";
+import { openModal } from "@/features/infoModal/infoModalSlice";
 
 const BillBoard = () => {
   const { data } = useBillBoard();
+  const dispatch = useAppDispatch();
 
-  console.log("data", data);
+  const openModalHandler = () => {
+    console.log("open handler...");
+    dispatch(openModal(data?.id));
+  };
 
   return (
     <div className="h-[56.25vw] relative">
@@ -26,7 +32,10 @@ const BillBoard = () => {
         </p>
         <div className="flex flex-row gap-2 mt-2">
           <PlayButton movieId={data?.id} />
-          <button className=" flex flex-row gap-1 items-center bg-white bg-opacity-50 px-4 md:px-6 py-1 rounded-md  text-white hover:bg-opacity-30 text-sm md:text-md">
+          <button
+            onClick={openModalHandler}
+            className=" flex flex-row gap-1 items-center bg-white bg-opacity-50 px-4 md:px-6 py-1 rounded-md  text-white hover:bg-opacity-30 text-sm md:text-md"
+          >
             <IoIosInformationCircleOutline size={20} />
             More
           </button>
