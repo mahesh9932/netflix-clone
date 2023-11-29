@@ -24,6 +24,7 @@ const MovieCard = ({ movie }: any) => {
       <div className="h-[14vw]">
         <img
           src={movie.thumbnailUrl}
+          alt="thumbnail"
           className="w-full rounded-md object-cover h-[14vw] transition duration  sm:group-hover:opacity-0 cursor-pointer delay-200"
         />
       </div>
@@ -31,6 +32,7 @@ const MovieCard = ({ movie }: any) => {
       <div className="absolute top-0 left-0 scale-0 invisible sm:group-hover:visible group-hover:translate-x-2 group-hover:-translate-y-10 transition delay-300 group-hover:scale-110  z-10">
         <img
           src={movie.thumbnailUrl}
+          alt="thumbnail"
           className="w-full h-[14vw] object-cover rounded-t-md shadow-xl"
         />
         <div className="py-2 px-4 md:px-6 bg-zinc-800 rounded-b-md space-y-2">

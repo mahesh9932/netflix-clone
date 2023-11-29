@@ -35,7 +35,7 @@ const NavBar = () => {
           showBackground ? "bg-gray-900 bg-opacity-90" : ""
         }`}
       >
-        <img src="/images/logo.png" className="h-4 md:h-10" />
+        <img src="/images/logo.png" className="h-4 md:h-10" alt="logo" />
         <NavBarMenu />
         <div
           onClick={() => setShowBrowseMenu((prevVal) => !prevVal)}

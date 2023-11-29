@@ -48,7 +48,11 @@ const Auth = () => {
     <div className="bg-[url('/images/hero.jpg')] w-full h-full bg-no-repeat bg-center bg-cover bg-fixed">
       <div className="bg-black w-full h-full lg:bg-opacity-70">
         <div className="p-4">
-          <img src="/images/logo.png" className="h-10 max-sm:h-6" />
+          <img
+            src="/images/logo.png"
+            className="h-10 max-sm:h-6"
+            alt="logo image"
+          />
         </div>
         <div className="flex justify-center">
           <div className="bg-black my-8 px-8 py-8 max-md:px-0 max-md:py-0 w-2/3 max-w-md rounded-md">
