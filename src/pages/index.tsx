@@ -10,16 +10,27 @@ import useMoviesList from "@/hooks/useMoviesList";
 import useFavourites from "@/hooks/useFavourites";
 import InfoModal from "@/components/InfoModal";
 import { useAppSelector } from "@/app/hooks";
+import { IncomingMessage } from "http";
+
+interface CustomIncomingMessage extends IncomingMessage {
+  cookies: Partial<{ [key: string]: string }>;
+}
 
 export async function getServerSideProps(context: NextPageContext) {
-  const session = await getServerSession(context.req, context.res, authOptions);
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/auth",
-        permanent: false,
-      },
-    };
+  if (context.req && context.res) {
+    const session = await getServerSession(
+      context.req as CustomIncomingMessage,
+      context.res,
+      authOptions
+    );
+    if (!session) {
+      return {
+        redirect: {
+          destination: "/auth",
+          permanent: false,
+        },
+      };
+    }
   }
 
   return {

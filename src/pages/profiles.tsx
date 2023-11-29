@@ -3,16 +3,27 @@ import { authOptions } from "./api/auth/[...nextauth]";
 import { getServerSession } from "next-auth";
 import useCurrentUser from "@/hooks/useCurrentUser";
 import { useRouter } from "next/router";
+import { IncomingMessage } from "http";
+
+interface CustomIncomingMessage extends IncomingMessage {
+  cookies: Partial<{ [key: string]: string }>;
+}
 
 export async function getServerSideProps(context: NextPageContext) {
-  const session = await getServerSession(context.req, context.res, authOptions);
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/auth",
-        permanent: false,
-      },
-    };
+  if (context.req && context.res) {
+    const session = await getServerSession(
+      context.req as CustomIncomingMessage,
+      context.res,
+      authOptions
+    );
+    if (!session) {
+      return {
+        redirect: {
+          destination: "/auth",
+          permanent: false,
+        },
+      };
+    }
   }
 
   return {
